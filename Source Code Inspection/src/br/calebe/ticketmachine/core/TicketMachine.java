@@ -36,8 +36,15 @@ public class TicketMachine {
         return saldo;
     }
 
-    public Iterator<PapelMoeda> getTroco() {
-        Troco troco = new Troco(saldo - valor);
+    public Iterator<PapelMoeda> getTroco() throws SaldoInsuficienteException{
+        if (saldo <= 0) {
+            throw new SaldoInsuficienteException();
+        }
+
+        int valorTroco = saldo;
+        saldo = 0;
+
+        Troco troco = new Troco(valorTroco);
         return troco.getIterator();
     }
 
