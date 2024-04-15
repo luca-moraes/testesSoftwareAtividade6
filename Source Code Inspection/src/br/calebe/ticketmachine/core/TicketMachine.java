@@ -14,8 +14,8 @@ public class TicketMachine {
     protected int saldo;
     protected int[] papelMoeda = {2, 5, 10, 20, 50, 100};
 
-    public TicketMachine(int valor) {
-        this.valor = valor;
+    public TicketMachine(int precoDoBilhete) {
+        this.valor = precoDoBilhete;
         this.saldo = 0;
     }
 
