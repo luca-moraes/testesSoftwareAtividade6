@@ -14,8 +14,8 @@ public class TicketMachine {
     protected int saldo;
     protected int[] papelMoeda = {2, 5, 10, 20, 50, 100};
 
-    public TicketMachine(int valor) {
-        this.valor = valor;
+    public TicketMachine(int precoDoBilhete) {
+        this.valor = precoDoBilhete;
         this.saldo = 0;
     }
 
@@ -36,7 +36,7 @@ public class TicketMachine {
         return saldo;
     }
 
-    public Iterator<Integer> getTroco() {
+    public Iterator<PapelMoeda> getTroco() {
         Troco troco = new Troco(saldo - valor);
         return troco.getIterator();
     }
@@ -45,9 +45,14 @@ public class TicketMachine {
         if (saldo < valor) {
             throw new SaldoInsuficienteException();
         }
+
         String result = "*****************\n";
-        result += "*** R$ " + saldo + ",00 ****\n";
+        result += "Bilhete impresso no valor de:\n";
+        result += "*** R$ " + valor + ",00 ****\n";
         result += "*****************\n";
+
+        saldo = saldo - valor;
+
         return result;
     }
 }
